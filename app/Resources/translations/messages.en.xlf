@@ -296,7 +296,7 @@
 
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
-                <target><![CDATA[This is a <strong>demo application</strong> built in the Symfony Framework to illustrate the recommended way of developing Symfony applications.]]></target>
+                <target><![CDATA[This is the <strong>e-portal backend</strong> where you can manage posts.]]></target>
             </trans-unit>
             <trans-unit id="help.show_code">
                 <source>help.show_code</source>
@@ -332,7 +332,7 @@
             </trans-unit>
             <trans-unit id="help.more_information">
                 <source>help.more_information</source>
-                <target><![CDATA[For more information, check out the <a href="http://symfony.com/doc">Symfony doc</a>.]]></target>
+                <target><![CDATA[Please contact <a href="https://www.in2it.be/contact/" title="in2it" target="_blank">in2it</a> for support and assistance.]]></target>
             </trans-unit>
 
             <trans-unit id="rss.title">

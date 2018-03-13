@@ -7,6 +7,8 @@ services:
     markdown:
         class: AppBundle\Utils\Markdown
 
+    
+
     # These are the Twig extensions that create new filters and functions for
     # using them in the templates
     app.twig.app_extension:
@@ -65,6 +67,11 @@ services:
         public: false
         tags:
             - { name: security.voter }
+
+    
+
+
+    
 
     # Uncomment the following lines to define a service for the Post Doctrine repository.
     # It's not mandatory to create these services, but if you use repositories a lot,

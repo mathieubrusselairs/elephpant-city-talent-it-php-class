@@ -174,12 +174,12 @@ class AddUserCommand extends ContainerAwareCommand
         $startTime = microtime(true);
 
         $username = $input->getArgument('username');
-        $plainPassword = $input->getArgument('password');
+        $password = $input->getArgument('password');
         $email = $input->getArgument('email');
         $isAdmin = $input->getOption('admin');
 
         // make sure to validate the user data is correct
-        $this->validateUserData($username, $plainPassword, $email);
+        $this->validateUserData($username, $password, $email);
 
         // create the user and encode its password
         $user = new User();
@@ -189,7 +189,7 @@ class AddUserCommand extends ContainerAwareCommand
 
         // See http://symfony.com/doc/current/book/security.html#security-encoding-password
         $encoder = $this->getContainer()->get('security.password_encoder');
-        $encodedPassword = $encoder->encodePassword($user, $plainPassword);
+        $encodedPassword = $encoder->encodePassword($user, $password);
         $user->setPassword($encodedPassword);
 
         $this->entityManager->persist($user);
@@ -212,17 +212,17 @@ class AddUserCommand extends ContainerAwareCommand
      *
      * @internal
      */
-    public function passwordValidator($plainPassword)
+    public function passwordValidator($password)
     {
-        if (empty($plainPassword)) {
+        if (empty($password)) {
             throw new \Exception('The password can not be empty.');
         }
 
-        if (strlen(trim($plainPassword)) < 6) {
+        if (strlen(trim($password)) < 6) {
             throw new \Exception('The password must be at least 6 characters long.');
         }
 
-        return $plainPassword;
+        return $password;
     }
 
     /**
@@ -244,7 +244,7 @@ class AddUserCommand extends ContainerAwareCommand
         return $email;
     }
 
-    private function validateUserData($username, $plainPassword, $email)
+    private function validateUserData($username, $password, $email)
     {
         $userRepository = $this->entityManager->getRepository(User::class);
 
@@ -256,7 +256,7 @@ class AddUserCommand extends ContainerAwareCommand
         }
 
         // validate password and email if is not this input means interactive.
-        $this->passwordValidator($plainPassword);
+        $this->passwordValidator($password);
         $this->emailValidator($email);
 
         // check if a user with the same email already exists.

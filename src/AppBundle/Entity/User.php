@@ -50,6 +50,7 @@ class User implements UserInterface
      */
     private $password;
 
+
     /**
      * @var array
      *
@@ -92,6 +93,9 @@ class User implements UserInterface
     {
         return $this->password;
     }
+
+
+
 
     /**
      * @param string $password
